@@ -1,4 +1,6 @@
 """트리를 반전 시켜라"""
+import collections
+
 
 class TreeNode:
     def __init__(self, x):
@@ -13,6 +15,35 @@ def invertTree(root: TreeNode) -> TreeNode:
         return root
     return None
 
+#BPS 구조
+def invertTree2(root: TreeNode) -> TreeNode:
+    queue = collections.deque([root])
+
+    while queue:
+        node = queue.popleft()
+        # 부모 노드부터 하향식 스왑
+        if node:
+            node.left, node.right = node.right, node.left
+
+            queue.append(node.left)
+            queue.append(node.right)
+
+    return root
+
+#DFS 구조
+def invertTree3(root: TreeNode) -> TreeNode:
+    stack = collections.deque([root])
+
+    while stack:
+        node = stack.pop()
+        # 부모 노드부터 하향식 스왑
+        if node:
+            node.left, node.right = node.right, node.left
+
+            stack.append(node.left)
+            stack.append(node.right)
+    return root
+
 
 
 root = TreeNode(4)
@@ -24,8 +55,10 @@ root.right.left = TreeNode(6)
 root.right.right = TreeNode(9)
 
 
-print(invertTree(root).val)
-print(invertTree(root).left.val)
-print(invertTree(root).right.val)
-print(invertTree(root).left.left.val)
-print(invertTree(root).left.right.val)
+print(invertTree3(root).val)
+print(invertTree3(root).left.val)
+print(invertTree3(root).right.val)
+print(invertTree3(root).left.left.val)
+print(invertTree3(root).left.right.val)
+print(invertTree3(root).right.left.val)
+print(invertTree3(root).right.right.val)
