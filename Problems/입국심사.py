@@ -14,5 +14,4 @@ def solution(n, times):
 
     return answer
 
-
 print(solution(6,[2, 10]))
