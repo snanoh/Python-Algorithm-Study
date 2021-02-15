@@ -9,16 +9,16 @@
 
 
 N = int(input())
-count = 0
 
+i = 0
 while True:
-    if (N % 5 == 0):
-        count = count + (N // 5)
-        print(count)
+    if N % 5 == 0:
+        i += (N // 5)
+        print(i)
         break
-    N = N - 3
-    count = count + 1
-    if (N < 0):
+    N -= 3
+    i += 1
+    if N < 0:
         print(-1)
         break
 
